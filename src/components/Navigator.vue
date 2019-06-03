@@ -38,7 +38,8 @@ export default {
 <style lang="scss" scoped>
 
 .navigator {
-  // border: 1px solid;
+  z-index: 1;
+  background-color: white;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -57,9 +58,12 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.nav-link {
+.nav-link > a {
   cursor: pointer;
   margin: 15px;
-  font-size: 24px; 
+  font-size: 24px;
+  &:hover {
+    text-decoration: none;
+  } 
 }
 </style>

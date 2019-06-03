@@ -1,48 +1,55 @@
 <template>
-
   <div id="app">
-  
+
+    <!-- for the image overlay -->
+    <!-- <div class="overlay"></div> -->
+
     <Navigator/>
-    <SearchInput />
-    <Suggestions />
+    
+    <!-- the master component for all things flowing from the user's search -->
+    <Search />
 
+    <!-- <ReadingList :list="this.mylist"/> -->
+
+    <Suggestions/>
   </div>
-
-
-  
-
 </template>
 
 <script>
-
 // components
-import Navigator from "./components/Navigator.vue";
-import SearchInput from './components/SearchInput';
-import Suggestions from './components/Suggestions';
+import Navigator from "./components/Navigator";
+import Search from "./components/Search";
+import Suggestions from "./components/Suggestions";
 
 // tools
-import Vue from 'vue';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
-import BootstrapVue from 'bootstrap-vue';
+import Vue from "vue";
+import BootstrapVue from "bootstrap-vue";
 
-Vue.use(BootstrapVue)
-Vue.use(VueAxios, axios);
+Vue.use(BootstrapVue);
 
 export default {
   name: "app",
   components: {
     Navigator,
-    SearchInput,
+    Search,
     Suggestions
+  },
+  methods: {
+    
+  },
+  data() {
+    return {
+      newSearch: "",
+      
+    };
   }
 };
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap-vue/src/index.scss';
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap-vue/src/index.scss";
 
 * {
   font-family: Quicksand;
@@ -54,20 +61,34 @@ export default {
   // text-decoration: none;
   color: rgb(0, 68, 255);
   &:hover {
-    color: rgb(0, 119, 255)
+    color: rgb(0, 119, 255);
   }
 }
 #app {
-  background-image: url("./assets/books-bg.jpeg");
+  // z-index: 0;
+  min-height: 100vh;
+  background: url("assets/books-bg.jpeg") no-repeat;
+  background-size: 1600px 400px;
+  background-position: center bottom;
+  background-attachment: fixed;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
+// .overlay {
+//   position: fixed;
+//   z-index: 0;
+//   background-color: rgba(255,255,255,0.6);
+//   width: 100%;
+//   height: 100%;
+//   top: 0px;
+//   left: 0px;
+// }
 .logo {
   width: 50px;
   height: 50px;

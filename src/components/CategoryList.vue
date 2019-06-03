@@ -1,5 +1,5 @@
 <template>
-  <div class="category col float-left">
+  <div class="category">
     <p class="category-title">{{list.title}}</p>
     <a class="category-item" v-for="(item, index) in list.links" :key="index">{{item}}</a>
   </div>
@@ -34,7 +34,7 @@ export default {
 <style lang="scss" scoped>
 // @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css");
 .category {
-  margin-top: 40px;
+  margin-top: 10px;
   min-width: 180px;
   display: flex;
   flex-direction: column;

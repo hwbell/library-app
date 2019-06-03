@@ -57,7 +57,7 @@
 import TodoItem from "./TodoItem";
 
 export default {
-  name: "BookList",
+  name: "TodoList",
   components: {
     TodoItem
   },

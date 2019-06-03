@@ -56,10 +56,13 @@ export default {
 <style lang="scss" scoped>
 // @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css");
 #suggestions {
-  width: 80%;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.9);
+  margin-bottom: 40px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center; 
 }
 
