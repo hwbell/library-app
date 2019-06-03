@@ -1,8 +1,8 @@
 <template>
   <div class="navigator">
     
-    <div class="app-name">
-      <h3>Your Library</h3>
+    <div>
+      <h3 class="app-name" >Your Library</h3>
     </div>
 
     <div class="links-holder">
@@ -36,11 +36,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-// @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css");
+
 .navigator {
+  // border: 1px solid;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  margin: 0;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.app-name {
+  margin: 15px;
 }
 .links-holder {
   display: flex;
@@ -49,6 +59,7 @@ export default {
 }
 .nav-link {
   cursor: pointer;
-  // font-
+  margin: 15px;
+  font-size: 24px; 
 }
 </style>
