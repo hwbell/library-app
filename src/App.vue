@@ -6,10 +6,10 @@
 
     <Navigator/>
     
-    <!-- the master component for all things flowing from the user's search -->
+    <!--This is the master component for all things flowing from the user's search 
+        Search will contain results of the the search, as well as the user's
+        readingList, which is selected from the results -->
     <Search />
-
-    <!-- <ReadingList :list="this.mylist"/> -->
 
     <Suggestions/>
   </div>
@@ -51,6 +51,8 @@ export default {
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootstrap-vue/src/index.scss";
 
+$link-blue: rgb(0, 119, 255);
+
 * {
   font-family: Quicksand;
   font-weight: lighter;
@@ -59,17 +61,17 @@ export default {
   cursor: pointer;
   transition: all 0.3s ease;
   // text-decoration: none;
-  color: rgb(0, 68, 255);
+  color: $link-blue;
   &:hover {
-    color: rgb(0, 119, 255);
+    color: $link-blue;
   }
 }
 #app {
   // z-index: 0;
   min-height: 100vh;
   background: url("assets/books-bg.jpeg") no-repeat;
-  background-size: 1600px 400px;
-  background-position: center bottom;
+  background-size: 2000px 400px;
+  background-position: 0% 120%;
   background-attachment: fixed;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

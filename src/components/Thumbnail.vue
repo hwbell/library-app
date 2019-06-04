@@ -1,7 +1,12 @@
 <template>
   <!-- <img class="thumbnail" :src="this.url" alt="img"/> -->
   <div>
-    <img class="thumbnail" :class="{ higlighted : highlighted }" :src="this.source" alt="img" @click="showBookDetail">
+    <img
+      class="thumbnail"
+      :src="this.source.volumeInfo.imageLinks.thumbnail"
+      alt="img"
+      @click="showBookDetail"
+    >
   </div>
 </template>
 
@@ -10,34 +15,36 @@ export default {
   name: "Thumbnail",
   props: {
     source: {
-      type: String,
+      type: Object,
       required: true
     }
   },
-  data() {
-    console.log(this.url);
-    return {
-      // 'source': this.source,
-      // 'url': this.url
-    };
-  },
-  computed: {
-    // url() {
-    //   return this.url;
-    // }
-  },
   methods: {
-    //
+    showBookDetail() {
+      console.log("emitting showBookDetail");
+      this.$emit("showBookDetail", {
+        book: this.source
+      });
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-// @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css");
-.thumbnail {
-  margin: 15px 0px;
-  box-shadow: -3px 3px 5px 1px rgba(24, 24, 24, 0.2);
-}
+$link-blue: rgb(0, 119, 255);
 
+.thumbnail {
+  cursor: pointer;
+  margin: 15px 0px;
+  height: 100%;
+  box-shadow: -2px 2px 5px 1px rgba(24, 24, 24, 0.2);
+  transition: all 0.15s linear;
+  &:hover {
+    box-shadow: 0px 0px 5px 2px rgba(49, 42, 148, 0.52);
+    -webkit-transform: translate(1px);
+    -ms-transform: translate(1px);
+    transform: translate(1px);
+  }
+}
 </style>

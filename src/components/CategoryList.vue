@@ -46,7 +46,7 @@ export default {
   font-size: 18px;
 }
 .category-item {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 10px; 
   color: rgb(0, 68, 255) !important;
   &:hover {

@@ -54,12 +54,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-// @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css");
+
+$link-blue: rgb(0, 119, 255);
+
 #suggestions {
   width: 100%;
   padding: 20px;
   background-color: rgba(255,255,255,0.9);
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
