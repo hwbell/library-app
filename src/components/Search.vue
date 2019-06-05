@@ -18,9 +18,42 @@
     </div>
 
     <!-- search results -->
-    <div id="results" class="row">
+
+    <p v-if="this.searchResults.length>0" class="subtitle">search results</p>
+
+    <!-- <div class="results row"> -->
+      <!-- probably one of the best packages on npm -->
+    <draggable
+      class="results row"
+      v-model="searchResults"
+      group="people"
+      @start="drag=true"
+      @end="drag=false"
+    >
+      <div v-for="(result, index) in searchResults" :key="index" class>
+        <Thumbnail
+          @showBookDetail="showBookDetail"
+          v-if="!!result.volumeInfo.imageLinks"
+          :source="result"
+          type="search"
+        />
+      </div>
+    </draggable>
+
+    <!-- reading list -->
+    <!-- if nothing is there ... -->
+    <p v-if="this.readingList.length === 0" class="list-intro" id="reading-list">
+      {{`Your list is empty! Search for some books from Google, add them to your
+      list, and they will appear here. `}}
+    </p>
+
+    <!-- otherwise -->
+    <p v-if="this.readingList.length>0" class="subtitle">Your Reading List</p>
+
+    <!--  -->
+    <div class="results row">
       <div
-        v-for="(result, index) in searchResults"
+        v-for="(result, index) in readingList"
         :key="index"
         class="col-6 col-sm-4 col-md-3 col-lg-2"
       >
@@ -28,19 +61,28 @@
           @showBookDetail="showBookDetail"
           v-if="!!result.volumeInfo.imageLinks"
           :source="result"
+          type="reading-list"
         />
       </div>
     </div>
 
     <!-- the detail page. this will show when a thumbnail is clicked -->
     <transition name="fade">
-      <BookDetail v-if="this.showDetail" @closeDetail="closeDetail" @addBookToList="addBookToList" :book="this.detailBook"/>
+      <BookDetail
+        v-if="this.showDetail"
+        @closeDetail="closeDetail"
+        @addBookToList="addBookToList"
+        @removeBookFromList="removeBookFromList"
+        :book="this.detailBook"
+        :type="this.detailType"
+      />
     </transition>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
+import draggable from "vuedraggable";
 
 // components
 import Thumbnail from "./Thumbnail";
@@ -56,7 +98,8 @@ export default {
   name: "",
   components: {
     Thumbnail,
-    BookDetail
+    BookDetail,
+    draggable // register the npm component
   },
   props: {
     //
@@ -67,6 +110,7 @@ export default {
       searchResults: [],
       readingList: [],
       showDetail: false,
+      detailType: "search",
       detailBook: null
     };
   },
@@ -82,10 +126,15 @@ export default {
     fetchSearch() {
       // console.log(`fetching data for query: ${this.query}`);
       Vue.axios
-        .get(`https://www.googleapis.com/books/v1/volumes?q=${this.query}`)
+        .get(
+          `https://www.googleapis.com/books/v1/volumes?q=${
+            this.query
+          }&max-results=20`
+        )
         .then(response => {
           // console.log(response);
           this.searchResults = response.data.items;
+          this.searchFired = true;
         })
         .catch(e => {
           console.log(e);
@@ -94,10 +143,13 @@ export default {
     // fired on the emitted event from clicking a thumbnail
     // for the modal to show/hide
     showBookDetail(data) {
-      console.log(`showBookDetail firing for bookId: ${data.book.id}`);
+      console.log(
+        `showBookDetail firing for bookId: ${data.book.id}, a ${data.type} book`
+      );
 
       if (!this.showDetail) {
         this.detailBook = data.book;
+        this.detailType = data.type;
         this.showDetail = true;
       } else {
         return;
@@ -109,9 +161,30 @@ export default {
     },
     addBookToList() {
       let title = this.detailBook.volumeInfo.title;
-      console.log(`adding book to list: ${title}`)
-    }
+      console.log(`adding book to list: ${title}`);
 
+      // see if the book is already in the list
+      let present = false;
+      this.readingList.forEach(book => {
+        if (book.id == this.detailBook.id) {
+          present = true;
+        }
+      });
+
+      //  add the book if it wasn't already there
+      if (!present) {
+        this.readingList.push(this.detailBook);
+        alert(`${title} was added to your list!`);
+      } else {
+        alert("That book is already on your list.");
+      }
+    },
+    removeBookFromList() {
+      console.log(`removing ${this.detailBook.volumeInfo.title} from list`);
+      this.readingList = this.readingList.filter(book => {
+        return book.id !== this.detailBook.id;
+      });
+    }
   }
 };
 </script>
@@ -122,8 +195,13 @@ $link-blue: rgb(0, 119, 255);
 
 #search {
   // z-index: 1;
-  width: 100%;
+  // background-color: rgba(255, 255, 255, 0.8);
+  width: 90%;
+  // margin: auto auto;
+  // height: 100%;
   margin-top: 100px;
+  margin-bottom: 80px;
+  // border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,6 +211,9 @@ $link-blue: rgb(0, 119, 255);
   display: flex;
   justify-content: center;
   margin: 20px;
+}
+#ask {
+  font-size: 24px;
 }
 #search-input {
   padding: 18px;
@@ -144,8 +225,13 @@ $link-blue: rgb(0, 119, 255);
     outline: none;
   }
 }
-#ask {
+.list-intro {
   font-size: 18px;
+  width: 60%;
+  text-align: left;
+}
+.subtitle {
+  font-size: 24px;
 }
 #search-icon {
   cursor: pointer;
@@ -159,9 +245,9 @@ $link-blue: rgb(0, 119, 255);
 //   color: $link-blue;
 //   cursor: pointer;
 // }
-#results {
+.results {
   width: 90%;
-  margin: 30px;
+  margin-bottom: 30px;
 }
 // for the animation of the modal
 .fade-enter-active,

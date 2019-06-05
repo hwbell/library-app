@@ -5,34 +5,49 @@
 
     <i class="fas fa-times" @click="closeDetail"></i>
 
+    <!-- image with info below -->
     <div class="image-holder col-sm-4">
       <img class="image" :src="info.imageLinks.thumbnail" alt>
 
       <p class="notes">{{parsePublisher(info)}}</p>
       <p class="notes">{{ `${info.pageCount} pages` }}</p>
 
-      <star-rating class="stars" :star-size="20" :fixed-points="2" :read-only="true" :rating="info.averageRating"></star-rating>
-      <p class="notes">{{ `avg of ${info.ratingsCount} ratings` }}</p>
-    </div>
-  
+      <star-rating
+        class="stars"
+        :star-size="20"
+        :fixed-points="2"
+        :read-only="true"
+        :rating="info.averageRating"
+      ></star-rating>
+      <p class="notes">{{ `avg of ${info.ratingsCount || 0} ratings` }}</p>
 
+    </div>
+
+    <!-- description and button to add / delete item 
+    whether or not you see an add or delete option depends on
+    the 'type' prop. if its a search detail, we can add the book.
+    if its NOT a search, we can only delete it - its already on the list-->
     <div class="col-sm-8">
       <h3 class="title">{{ info.title}}</h3>
       <h5 class="authors">{{ parseAuthors(info.authors)}}</h5>
 
       <p class="text">{{trimText(info.description, 1000)}}</p>
 
-      <div class="add-item row">
+      <div v-if="type == 'search'" class="add-item row">
         <i class="fas fa-plus-circle" @click="addBookToList"></i>
-        <p class="add">add to reading list</p>
+        <p class="add">add to list</p>
       </div>
 
+      <div v-if="type !== 'search'" class="add-item row">
+        <i class="fas fa-times-circle" @click="removeBookFromList"></i>
+        <p class="add">remove from list</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// use this npm package for the stars
+// use this npm package for the stars, very handy
 import StarRating from "vue-star-rating";
 
 export default {
@@ -44,11 +59,16 @@ export default {
     book: {
       type: Object,
       required: true
+    },
+    type: {
+      type: String,
+      required: true
     }
   },
   data() {
     return {
       info: this.book.volumeInfo
+      // type: this.type
     };
   },
   directives: {
@@ -58,6 +78,9 @@ export default {
       }
     }
   },
+  computed: {
+    //
+  },
   methods: {
     // just to close and exit
     closeDetail() {
@@ -66,8 +89,13 @@ export default {
     },
     // to add the book to list in Search component
     addBookToList() {
-      console.log('emitting addBookToList');
+      console.log("emitting addBookToList");
       this.$emit("addBookToList");
+    },
+    // to remove the book from list in Search component
+    removeBookFromList() {
+      console.log("emitting removeBookFromList");
+      this.$emit("removeBookFromList");
     },
     trimText(text, length) {
       let trail = text.length > length ? ` ...` : ``;
@@ -89,11 +117,11 @@ $link-blue: rgb(0, 119, 255);
 
 .book-detail {
   position: fixed;
-  height: 400px;
+  height: 60%;
   width: 75%;
   max-width: 500px;
-  bottom: 15%;
-  left: 15%;
+  bottom: 0%;
+  right: 15%;
   background-color: rgba(245, 245, 245, 0.98);
   box-shadow: 0px 0px 5px 2px rgba(5, 1, 71, 0.52);
   border-radius: 10px;
@@ -115,10 +143,6 @@ $link-blue: rgb(0, 119, 255);
   font-size: 14px;
   padding-top: 10px;
 }
-// .stars {
-//   width: 100px;
-//   height: 20px;
-// }
 .title {
   text-align: left;
   padding-top: 8px;
@@ -134,7 +158,7 @@ $link-blue: rgb(0, 119, 255);
   // color: black;
 }
 .add-item {
-  margin: 0px
+  margin: 0px;
 }
 
 i {
@@ -145,7 +169,13 @@ i {
 .fa-plus-circle {
   color: $link-blue;
   &:hover {
-    color: rgb(89, 0, 255)
+    color: rgb(89, 0, 255);
+  }
+}
+.fa-times-circle {
+  color: rgba(255, 0, 76, 0.726);
+  &:hover {
+    color: rgb(255, 0, 0);
   }
 }
 .fa-times {
@@ -154,7 +184,7 @@ i {
   top: 5px;
   right: 5px;
   &:hover {
-    color: grey
+    color: grey;
   }
 }
 

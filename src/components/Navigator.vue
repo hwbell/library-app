@@ -5,12 +5,13 @@
 
     <div class="links-holder">
       <p class="nav-link">
-        <a href="#reading-list">my list</a>
+        <a href="#reading-list" v-smooth-scroll>my list</a>
       </p>
       <p class="nav-link">
-        <a href="#search">find more</a>
+        <a href="#search" v-smooth-scroll>find more</a>
       </p>
     </div>
+    
   </div>
 </template>
 

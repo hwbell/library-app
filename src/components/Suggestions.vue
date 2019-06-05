@@ -2,7 +2,7 @@
 
   <div class="row" id="suggestions">
 
-    <CategoryList v-for="(item, index) in suggestions" :key="index" :list="item"/>
+    <CategoryList v-for="(item, index) in suggestions" :key="index" :list="item" @newSearch="newSearch"/>
 
   </div>
 
@@ -47,7 +47,11 @@ export default {
     };
   },
   methods: {
-    // 
+    newSearch(data) {
+      this.$emit('newSearch', {
+        query: data.query
+      })
+    }
   }
 };
 </script>

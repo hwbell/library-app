@@ -1,13 +1,15 @@
 <template>
   <!-- <img class="thumbnail" :src="this.url" alt="img"/> -->
-  <div>
-    <img
-      class="thumbnail"
-      :src="this.source.volumeInfo.imageLinks.thumbnail"
-      alt="img"
-      @click="showBookDetail"
-    >
-  </div>
+  <transition name="fade">
+    <div>
+      <img
+        class="thumbnail"
+        :src="this.source.volumeInfo.imageLinks.thumbnail"
+        alt="img"
+        @click="showBookDetail"
+      >
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -17,13 +19,18 @@ export default {
     source: {
       type: Object,
       required: true
+    },
+    type: {
+      type: String,
+      required: true
     }
   },
   methods: {
     showBookDetail() {
       console.log("emitting showBookDetail");
       this.$emit("showBookDetail", {
-        book: this.source
+        book: this.source,
+        type: this.type
       });
     }
   }
@@ -36,8 +43,9 @@ $link-blue: rgb(0, 119, 255);
 
 .thumbnail {
   cursor: pointer;
-  margin: 15px 0px;
-  height: 100%;
+  margin: 15px 10px;
+  height: 150px;
+  width: 100px;
   box-shadow: -2px 2px 5px 1px rgba(24, 24, 24, 0.2);
   transition: all 0.15s linear;
   &:hover {
@@ -46,5 +54,14 @@ $link-blue: rgb(0, 119, 255);
     -ms-transform: translate(1px);
     transform: translate(1px);
   }
+}
+// for the animation of the thumbnail
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

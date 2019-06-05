@@ -1,17 +1,15 @@
 <template>
   <div id="app">
+    <div id="content">
+      <Navigator/>
 
-    <!-- for the image overlay -->
-    <!-- <div class="overlay"></div> -->
-
-    <Navigator/>
-    
-    <!--This is the master component for all things flowing from the user's search 
+      <!--This is the master component for all things flowing from the user's search 
         Search will contain results of the the search, as well as the user's
-        readingList, which is selected from the results -->
-    <Search />
+      readingList, which is selected from the results-->
+      <Search/>
 
-    <Suggestions/>
+      <!-- <Suggestions/> -->
+    </div>
   </div>
 </template>
 
@@ -19,7 +17,7 @@
 // components
 import Navigator from "./components/Navigator";
 import Search from "./components/Search";
-import Suggestions from "./components/Suggestions";
+// import Suggestions from "./components/Suggestions";
 
 // tools
 import Vue from "vue";
@@ -32,15 +30,12 @@ export default {
   components: {
     Navigator,
     Search,
-    Suggestions
+    // Suggestions
   },
-  methods: {
-    
-  },
+  methods: {},
   data() {
     return {
-      newSearch: "",
-      
+      newSearch: ""
     };
   }
 };
@@ -81,6 +76,14 @@ $link-blue: rgb(0, 119, 255);
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+#content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255,255,255, 0.75)
 }
 // .overlay {
 //   position: fixed;

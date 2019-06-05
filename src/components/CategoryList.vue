@@ -1,7 +1,7 @@
 <template>
   <div class="category">
     <p class="category-title">{{list.title}}</p>
-    <a class="category-item" v-for="(item, index) in list.links" :key="index">{{item}}</a>
+    <a class="category-item" v-for="(item, index) in list.links" :key="index" @click="newSearch(item)" >{{item}}</a>
   </div>
 </template>
 
@@ -25,7 +25,11 @@ export default {
     };
   },
   methods: {
-    //
+    newSearch(item) {
+      this.$emit('newSearch', {
+        query: item
+      })
+    }
   }
 };
 </script>
