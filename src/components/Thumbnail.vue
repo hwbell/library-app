@@ -6,7 +6,7 @@
         class="thumbnail"
         :src="this.source.volumeInfo.imageLinks.thumbnail"
         alt="img"
-        @click="showBookDetail"
+        @click="showDetail"
       >
     </div>
   </transition>
@@ -26,7 +26,7 @@ export default {
     }
   },
   methods: {
-    showBookDetail() {
+    showDetail() {
       console.log("emitting showBookDetail");
       this.$emit("showBookDetail", {
         book: this.source,

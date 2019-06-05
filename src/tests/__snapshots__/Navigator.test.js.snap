@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigator renders correctly 1`] = `
+<div
+  id="navigator"
+>
+  <p
+    class="app-name"
+  >
+    Your Library
+  </p>
+   
+  <mqshow
+    if="sm"
+  >
+    <b-dropdown
+      class="m-md-2 dropdown"
+      id="dropdown"
+      text="Go to"
+      variant="primary"
+    >
+      <b-dropdown-item>
+        <a
+          href="#reading-list"
+        >
+          my list
+        </a>
+      </b-dropdown-item>
+       
+      <b-dropdown-item>
+        <a
+          href="#search"
+        >
+          find more
+        </a>
+      </b-dropdown-item>
+    </b-dropdown>
+  </mqshow>
+   
+  <mqshow
+    if="md!"
+  >
+    <div
+      class="links-holder"
+    >
+      <p
+        class="nav-link"
+      >
+        <a
+          href="#reading-list"
+        >
+          my list
+        </a>
+      </p>
+       
+      <p
+        class="nav-link"
+      >
+        <a
+          href="#search"
+        >
+          find more
+        </a>
+      </p>
+    </div>
+  </mqshow>
+</div>
+`;

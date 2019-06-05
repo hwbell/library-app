@@ -14,13 +14,13 @@
 </template>
 
 <script>
+
+import Vue from "vue";
 // components
 import Navigator from "./components/Navigator";
 import Search from "./components/Search";
-// import Suggestions from "./components/Suggestions";
 
 // tools
-import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 
 Vue.use(BootstrapVue);
@@ -85,15 +85,14 @@ $link-blue: rgb(0, 119, 255);
   align-items: center;
   background-color: rgb(255,255,255, 0.75)
 }
-// .overlay {
-//   position: fixed;
-//   z-index: 0;
-//   background-color: rgba(255,255,255,0.6);
-//   width: 100%;
-//   height: 100%;
-//   top: 0px;
-//   left: 0px;
-// }
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 .logo {
   width: 50px;
   height: 50px;

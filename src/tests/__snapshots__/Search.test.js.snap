@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search renders correctly 1`] = `
+<div
+  id="search"
+>
+  <p
+    id="ask"
+  >
+    What do you feel like reading?
+  </p>
+   
+  <div
+    id="input-holder"
+  >
+    <input
+      id="search-input"
+      placeholder="book, author, subject, keyword"
+      type="text"
+    />
+     
+    <img
+      alt=""
+      id="search-icon"
+      src="../assets/search.png"
+    />
+  </div>
+   
+  <!---->
+   
+  <div
+    class="results row"
+  />
+   
+  <p
+    class="subtitle"
+    id="reading-list"
+  >
+    Your Reading List
+  </p>
+   
+  <p
+    class="list-intro"
+  >
+    
+    Your list is empty! Search for some books from Google, add them to your
+    list, and they will appear here. 
+  
+  </p>
+   
+  <div
+    class="results row"
+  />
+   
+  <!---->
+</div>
+`;

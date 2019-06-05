@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Thumbnail renders correctly 1`] = `
+<div
+  name="fade"
+>
+  <img
+    alt="img"
+    class="thumbnail"
+    src="https://books.google.com/books/content?id=antycYtRXOUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+  />
+</div>
+`;

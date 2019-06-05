@@ -21,16 +21,15 @@
 
     <p v-if="this.searchResults.length>0" class="subtitle">search results</p>
 
-    <!-- <div class="results row"> -->
-      <!-- probably one of the best packages on npm -->
+    <!-- draggable is a nice npm package -->
     <draggable
       class="results row"
       v-model="searchResults"
-      group="people"
+      group="search"
       @start="drag=true"
       @end="drag=false"
     >
-      <div v-for="(result, index) in searchResults" :key="index" class>
+      <div v-for="(result, index) in searchResults" :key="index" class="result-item col-6 col-sm-4 col-md-3 col-lg-2">
         <Thumbnail
           @showBookDetail="showBookDetail"
           v-if="!!result.volumeInfo.imageLinks"
@@ -41,22 +40,25 @@
     </draggable>
 
     <!-- reading list -->
+
+    <p id="reading-list" class="subtitle">Your Reading List</p>
+
     <!-- if nothing is there ... -->
-    <p v-if="this.readingList.length === 0" class="list-intro" id="reading-list">
+    <p v-if="this.readingList.length === 0" class="list-intro">
       {{`Your list is empty! Search for some books from Google, add them to your
       list, and they will appear here. `}}
     </p>
 
-    <!-- otherwise -->
-    <p v-if="this.readingList.length>0" class="subtitle">Your Reading List</p>
-
     <!--  -->
-    <div class="results row">
-      <div
-        v-for="(result, index) in readingList"
-        :key="index"
-        class="col-6 col-sm-4 col-md-3 col-lg-2"
-      >
+    <!-- draggable is a nice npm package -->
+    <draggable
+      class="results row"
+      v-model="readingList"
+      group="reading"
+      @start="drag=true"
+      @end="drag=false"
+    >
+      <div v-for="(result, index) in readingList" :key="index" class="result-item col-6 col-sm-4 col-md-3 col-lg-2">
         <Thumbnail
           @showBookDetail="showBookDetail"
           v-if="!!result.volumeInfo.imageLinks"
@@ -64,7 +66,7 @@
           type="reading-list"
         />
       </div>
-    </div>
+    </draggable>
 
     <!-- the detail page. this will show when a thumbnail is clicked -->
     <transition name="fade">
@@ -75,6 +77,7 @@
         @removeBookFromList="removeBookFromList"
         :book="this.detailBook"
         :type="this.detailType"
+        :showPopup="this.showPopup"
       />
     </transition>
   </div>
@@ -101,15 +104,13 @@ export default {
     BookDetail,
     draggable // register the npm component
   },
-  props: {
-    //
-  },
   data() {
     return {
       query: "",
       searchResults: [],
       readingList: [],
       showDetail: false,
+      showPopup: false,
       detailType: "search",
       detailBook: null
     };
@@ -174,9 +175,10 @@ export default {
       //  add the book if it wasn't already there
       if (!present) {
         this.readingList.push(this.detailBook);
-        alert(`${title} was added to your list!`);
+
+        // alert(`${title} was added to your list!`);
       } else {
-        alert("That book is already on your list.");
+        // alert("That book is already on your list.");
       }
     },
     removeBookFromList() {
@@ -184,8 +186,7 @@ export default {
       this.readingList = this.readingList.filter(book => {
         return book.id !== this.detailBook.id;
       });
-    },
-    // sortBooks
+    }
   }
 };
 </script>

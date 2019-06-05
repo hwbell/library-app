@@ -20,7 +20,6 @@
         :rating="info.averageRating"
       ></star-rating>
       <p class="notes">{{ `avg of ${info.ratingsCount || 0} ratings` }}</p>
-
     </div>
 
     <!-- description and button to add / delete item 
@@ -28,7 +27,7 @@
     the 'type' prop. if its a search detail, we can add the book.
     if its NOT a search, we can only delete it - its already on the list-->
     <div class="col-sm-8">
-      <h3 class="title">{{ info.title}}</h3>
+      <h4 class="title">{{ info.title}}</h4>
       <h5 class="authors">{{ parseAuthors(info.authors)}}</h5>
 
       <p class="text">{{trimText(info.description, 1000)}}</p>
@@ -43,12 +42,28 @@
         <p class="add">remove from list</p>
       </div>
     </div>
+
+    <!-- popup -->
+
+    <transition name="fade">
+      <div v-if="this.showPopup" class="popup">
+        <div >
+          <i class="fas fa-check"></i>
+          <p v-if="type == 'search'" class="add">book added!</p>
+          <p v-if="type !== 'search'" class="add">book removed</p>
+        </div>
+      </div>
+    </transition>
+    <!-- <b-modal id="modal-center" centered title="BootstrapVue">
+      <p class="my-4">Vertically centered modal!</p>
+    </b-modal>-->
   </div>
 </template>
 
 <script>
 // use this npm package for the stars, very handy
 import StarRating from "vue-star-rating";
+import { setTimeout } from 'timers';
 
 export default {
   name: "book-detail",
@@ -67,8 +82,8 @@ export default {
   },
   data() {
     return {
-      info: this.book.volumeInfo
-      // type: this.type
+      info: this.book.volumeInfo,
+      showPopup: false
     };
   },
   directives: {
@@ -87,15 +102,28 @@ export default {
       console.log("emitting closeDetail");
       this.$emit("closeDetail");
     },
+    closePopup() {
+      this.showPopup = false;
+    },
     // to add the book to list in Search component
     addBookToList() {
       console.log("emitting addBookToList");
+      this.showPopup = true;
       this.$emit("addBookToList");
+
+      setTimeout(() => {
+        this.showPopup = false;
+      }, 1400)
     },
     // to remove the book from list in Search component
     removeBookFromList() {
       console.log("emitting removeBookFromList");
+      this.showPopup = true;
       this.$emit("removeBookFromList");
+
+      setTimeout(() => {
+        this.showPopup = false;
+      }, 1400)
     },
     trimText(text, length) {
       let trail = text.length > length ? ` ...` : ``;
@@ -126,6 +154,16 @@ $link-blue: rgb(0, 119, 255);
   box-shadow: 0px 0px 5px 2px rgba(5, 1, 71, 0.52);
   border-radius: 10px;
   overflow-y: scroll;
+}
+.popup {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  bottom: 10px;
+  left: calc(50% - 50px);
+  background-color: rgba(245, 245, 245, 0.98);
+  box-shadow: 0px 0px 5px 2px rgba(5, 1, 71, 0.52);
+  border-radius: 10px;
 }
 .image-holder {
   padding: 15px;
@@ -165,6 +203,7 @@ i {
   cursor: pointer;
   transition: all 0.3s ease;
   margin: 5px;
+  font-size: 20px;
 }
 .fa-plus-circle {
   color: $link-blue;
@@ -204,7 +243,6 @@ i {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgba(180, 180, 180, 0.95);
-  height: 40px;
   border-radius: 6px;
 }
 

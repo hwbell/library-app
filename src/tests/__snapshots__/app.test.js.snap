@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+<div
+  id="app"
+>
+  <div
+    id="content"
+  >
+    <div
+      id="navigator"
+    >
+      <p
+        class="app-name"
+      >
+        Your Library
+      </p>
+       
+      <mqshow
+        if="sm"
+      >
+        <div
+          class="dropdown btn-group b-dropdown m-md-2 dropdown"
+          id="dropdown"
+        >
+          <!---->
+          <button
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="btn dropdown-toggle btn-primary"
+            id="dropdown__BV_toggle_"
+            type="button"
+          >
+            Go to
+          </button>
+          <ul
+            aria-labelledby="dropdown__BV_toggle_"
+            class="dropdown-menu"
+            role="menu"
+            tabindex="-1"
+          >
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                role="menuitem"
+                target="_self"
+              >
+                <a
+                  href="#reading-list"
+                >
+                  my list
+                </a>
+              </a>
+            </li>
+             
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                role="menuitem"
+                target="_self"
+              >
+                <a
+                  href="#search"
+                >
+                  find more
+                </a>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </mqshow>
+       
+      <mqshow
+        if="md!"
+      >
+        <div
+          class="links-holder"
+        >
+          <p
+            class="nav-link"
+          >
+            <a
+              href="#reading-list"
+            >
+              my list
+            </a>
+          </p>
+           
+          <p
+            class="nav-link"
+          >
+            <a
+              href="#search"
+            >
+              find more
+            </a>
+          </p>
+        </div>
+      </mqshow>
+    </div>
+     
+    <div
+      id="search"
+    >
+      <p
+        id="ask"
+      >
+        What do you feel like reading?
+      </p>
+       
+      <div
+        id="input-holder"
+      >
+        <input
+          id="search-input"
+          placeholder="book, author, subject, keyword"
+          type="text"
+        />
+         
+        <img
+          alt=""
+          id="search-icon"
+          src="../assets/search.png"
+        />
+      </div>
+       
+      <!---->
+       
+      <div
+        class="results row"
+      />
+       
+      <p
+        class="subtitle"
+        id="reading-list"
+      >
+        Your Reading List
+      </p>
+       
+      <p
+        class="list-intro"
+      >
+        
+    Your list is empty! Search for some books from Google, add them to your
+    list, and they will appear here. 
+  
+      </p>
+       
+      <div
+        class="results row"
+      />
+       
+      <!---->
+    </div>
+  </div>
+</div>
+`;

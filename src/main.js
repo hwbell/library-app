@@ -3,7 +3,9 @@ import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import VModal from '../node_modules/vue-js-modal'
 import vueSmoothScroll from 'vue2-smooth-scroll'
+import FineMq from "fine-mq";
 
+Vue.use(FineMq);
 Vue.use(vueSmoothScroll)
 Vue.use(BootstrapVue)
 Vue.use(VModal)

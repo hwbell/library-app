@@ -5,6 +5,12 @@ import Vue from 'vue'
 import App from '../App.vue';
 
 describe('App', () => {
+
+  it('renders correctly', () => {
+    const wrapper = mount(App)
+    expect(wrapper.element).toMatchSnapshot()
+  })
+
   const wrapper = mount(App)
   it('is a Vue instance', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
