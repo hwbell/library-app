@@ -184,7 +184,8 @@ export default {
       this.readingList = this.readingList.filter(book => {
         return book.id !== this.detailBook.id;
       });
-    }
+    },
+    // sortBooks
   }
 };
 </script>
