@@ -105,7 +105,7 @@ exports[`App renders correctly 1`] = `
       id="search"
     >
       <p
-        id="ask"
+        class="subtitle"
       >
         What do you feel like reading?
       </p>
@@ -120,7 +120,7 @@ exports[`App renders correctly 1`] = `
         />
          
         <img
-          alt=""
+          alt="search"
           id="search-icon"
           src="../assets/search.png"
         />
@@ -144,7 +144,9 @@ exports[`App renders correctly 1`] = `
       >
         
     Your list is empty! Search for some books from Google, add them to your
-    list, and they will appear here. 
+    list, and they will appear here. Once you have a list of books, drag the books
+    to sort them, or make use of the sort buttons. You can remove books you no longer
+    want.
   
       </p>
        

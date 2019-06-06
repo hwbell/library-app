@@ -9,7 +9,7 @@
     <div class="image-holder col-sm-4">
       <img class="image" :src="info.imageLinks.thumbnail" alt>
 
-      <p class="notes">{{parsePublisher(info)}}</p>
+      <p class="notes">{{info.publisher + `  ${info.publishedDate.slice(0, 4)}`}}</p>
       <p class="notes">{{ `${info.pageCount} pages` }}</p>
 
       <star-rating
@@ -28,10 +28,23 @@
     if its NOT a search, we can only delete it - its already on the list-->
     <div class="col-sm-8">
       <h4 class="title">{{ info.title}}</h4>
-      <h5 class="authors">{{ parseAuthors(info.authors)}}</h5>
+      <h5 class="authors">{{ info.authors.join(', ')}}</h5>
 
-      <p class="text">{{trimText(info.description, 1000)}}</p>
+      <p class="text">{{info.description.slice(0,350)}}</p>
 
+      <!-- popup -->
+      <div>
+        <transition name="fade">
+          <div v-if="this.showPopup" class="popup">
+            <i class="fas fa-check"></i>
+            <p v-if="type == 'search'" class="alert">book added!</p>
+            <p v-if="type !== 'search'" class="alert">book removed</p>
+          </div>
+        </transition>
+      </div>
+      <!--  -->
+
+      <!-- add or remove option -->
       <div v-if="type == 'search'" class="add-item row">
         <i class="fas fa-plus-circle" @click="addBookToList"></i>
         <p class="add">add to list</p>
@@ -41,29 +54,15 @@
         <i class="fas fa-times-circle" @click="removeBookFromList"></i>
         <p class="add">remove from list</p>
       </div>
+      <hr>
     </div>
-
-    <!-- popup -->
-
-    <transition name="fade">
-      <div v-if="this.showPopup" class="popup">
-        <div >
-          <i class="fas fa-check"></i>
-          <p v-if="type == 'search'" class="add">book added!</p>
-          <p v-if="type !== 'search'" class="add">book removed</p>
-        </div>
-      </div>
-    </transition>
-    <!-- <b-modal id="modal-center" centered title="BootstrapVue">
-      <p class="my-4">Vertically centered modal!</p>
-    </b-modal>-->
   </div>
 </template>
 
 <script>
 // use this npm package for the stars, very handy
 import StarRating from "vue-star-rating";
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 
 export default {
   name: "book-detail",
@@ -113,7 +112,8 @@ export default {
 
       setTimeout(() => {
         this.showPopup = false;
-      }, 1400)
+        this.$emit("closeDetail");
+      }, 1400);
     },
     // to remove the book from list in Search component
     removeBookFromList() {
@@ -123,18 +123,9 @@ export default {
 
       setTimeout(() => {
         this.showPopup = false;
-      }, 1400)
+        this.$emit("closeDetail");
+      }, 1400);
     },
-    trimText(text, length) {
-      let trail = text.length > length ? ` ...` : ``;
-      return text.slice(0, length) + trail;
-    },
-    parseAuthors(arr) {
-      return arr.join(`, `);
-    },
-    parsePublisher(info) {
-      return info.publisher + `  ${info.publishedDate.slice(0, 4)}`;
-    }
   }
 };
 </script>
@@ -146,7 +137,7 @@ $link-blue: rgb(0, 119, 255);
 .book-detail {
   position: fixed;
   height: 60%;
-  width: 75%;
+  width: 70%;
   max-width: 500px;
   bottom: 0%;
   right: 15%;
@@ -156,11 +147,7 @@ $link-blue: rgb(0, 119, 255);
   overflow-y: scroll;
 }
 .popup {
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  bottom: 10px;
-  left: calc(50% - 50px);
+  width: 60%;
   background-color: rgba(245, 245, 245, 0.98);
   box-shadow: 0px 0px 5px 2px rgba(5, 1, 71, 0.52);
   border-radius: 10px;
@@ -182,6 +169,7 @@ $link-blue: rgb(0, 119, 255);
   padding-top: 10px;
 }
 .title {
+  width: 80%;
   text-align: left;
   padding-top: 8px;
   font-weight: 600;
@@ -196,7 +184,7 @@ $link-blue: rgb(0, 119, 255);
   // color: black;
 }
 .add-item {
-  margin: 0px;
+  margin: 10px 0px;
 }
 
 i {
@@ -225,6 +213,9 @@ i {
   &:hover {
     color: grey;
   }
+}
+.alert {
+  font-size: 12px;
 }
 
 // make the scrollbar a little softer

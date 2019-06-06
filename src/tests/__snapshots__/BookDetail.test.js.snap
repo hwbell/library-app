@@ -1,0 +1,538 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`v renders correctly 1`] = `
+<div
+  class="book-detail row"
+>
+  <i
+    class="fas fa-times"
+  />
+   
+  <div
+    class="image-holder col-sm-4"
+  >
+    <img
+      alt=""
+      class="image"
+      src="http://books.google.com/books/content?id=antycYtRXOUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    />
+     
+    <p
+      class="notes"
+    >
+      Random House Digital, Inc.  2007
+    </p>
+     
+    <p
+      class="notes"
+    >
+      370 pages
+    </p>
+     
+    <div
+      class="stars vue-star-rating"
+      data-v-34cbeed1=""
+    >
+      <div
+        class="vue-star-rating"
+        data-v-34cbeed1=""
+      >
+        <span
+          class="vue-star-rating-star"
+          data-v-34cbeed1=""
+          style="margin-right: 0px;"
+        >
+          <svg
+            class="vue-star-rating-star"
+            data-v-21f5376e=""
+            data-v-34cbeed1=""
+            height="20"
+            step="100"
+            viewBox="0 0 20 20"
+            width="20"
+          >
+            <lineargradient
+              data-v-21f5376e=""
+              id="164k3f"
+              x1="0"
+              x2="100%"
+              y1="0"
+              y2="0"
+            >
+              <stop
+                data-v-21f5376e=""
+                offset="100%"
+                stop-color="#ffd055"
+              />
+               
+              <stop
+                data-v-21f5376e=""
+                offset="100%"
+                stop-color="#d8d8d8"
+              />
+            </lineargradient>
+             
+            <filter
+              data-v-21f5376e=""
+              filterUnits="userSpaceOnUse"
+              height="130%"
+              id="gcmoqg"
+              width="130%"
+            >
+              <fegaussianblur
+                data-v-21f5376e=""
+                result="coloredBlur"
+                stdDeviation="0"
+              />
+               
+              <femerge
+                data-v-21f5376e=""
+              >
+                <femergenode
+                  data-v-21f5376e=""
+                  in="coloredBlur"
+                />
+                 
+                <femergenode
+                  data-v-21f5376e=""
+                  in="SourceGraphic"
+                />
+              </femerge>
+            </filter>
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#164k3f)"
+              filter="url(#gcmoqg)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#fff"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#164k3f)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#999"
+              stroke-linejoin="miter"
+              stroke-width="0"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#164k3f)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+            />
+          </svg>
+        </span>
+        <span
+          class="vue-star-rating-star"
+          data-v-34cbeed1=""
+          style="margin-right: 0px;"
+        >
+          <svg
+            class="vue-star-rating-star"
+            data-v-21f5376e=""
+            data-v-34cbeed1=""
+            height="20"
+            step="100"
+            viewBox="0 0 20 20"
+            width="20"
+          >
+            <lineargradient
+              data-v-21f5376e=""
+              id="nkqy4a"
+              x1="0"
+              x2="100%"
+              y1="0"
+              y2="0"
+            >
+              <stop
+                data-v-21f5376e=""
+                offset="100%"
+                stop-color="#ffd055"
+              />
+               
+              <stop
+                data-v-21f5376e=""
+                offset="100%"
+                stop-color="#d8d8d8"
+              />
+            </lineargradient>
+             
+            <filter
+              data-v-21f5376e=""
+              filterUnits="userSpaceOnUse"
+              height="130%"
+              id="ks3g1"
+              width="130%"
+            >
+              <fegaussianblur
+                data-v-21f5376e=""
+                result="coloredBlur"
+                stdDeviation="0"
+              />
+               
+              <femerge
+                data-v-21f5376e=""
+              >
+                <femergenode
+                  data-v-21f5376e=""
+                  in="coloredBlur"
+                />
+                 
+                <femergenode
+                  data-v-21f5376e=""
+                  in="SourceGraphic"
+                />
+              </femerge>
+            </filter>
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#nkqy4a)"
+              filter="url(#ks3g1)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#fff"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#nkqy4a)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#999"
+              stroke-linejoin="miter"
+              stroke-width="0"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#nkqy4a)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+            />
+          </svg>
+        </span>
+        <span
+          class="vue-star-rating-star"
+          data-v-34cbeed1=""
+          style="margin-right: 0px;"
+        >
+          <svg
+            class="vue-star-rating-star"
+            data-v-21f5376e=""
+            data-v-34cbeed1=""
+            height="20"
+            step="100"
+            viewBox="0 0 20 20"
+            width="20"
+          >
+            <lineargradient
+              data-v-21f5376e=""
+              id="9iq75f"
+              x1="0"
+              x2="100%"
+              y1="0"
+              y2="0"
+            >
+              <stop
+                data-v-21f5376e=""
+                offset="100%"
+                stop-color="#ffd055"
+              />
+               
+              <stop
+                data-v-21f5376e=""
+                offset="100%"
+                stop-color="#d8d8d8"
+              />
+            </lineargradient>
+             
+            <filter
+              data-v-21f5376e=""
+              filterUnits="userSpaceOnUse"
+              height="130%"
+              id="3h4wap"
+              width="130%"
+            >
+              <fegaussianblur
+                data-v-21f5376e=""
+                result="coloredBlur"
+                stdDeviation="0"
+              />
+               
+              <femerge
+                data-v-21f5376e=""
+              >
+                <femergenode
+                  data-v-21f5376e=""
+                  in="coloredBlur"
+                />
+                 
+                <femergenode
+                  data-v-21f5376e=""
+                  in="SourceGraphic"
+                />
+              </femerge>
+            </filter>
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#9iq75f)"
+              filter="url(#3h4wap)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#fff"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#9iq75f)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#999"
+              stroke-linejoin="miter"
+              stroke-width="0"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#9iq75f)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+            />
+          </svg>
+        </span>
+        <span
+          class="vue-star-rating-star"
+          data-v-34cbeed1=""
+          style="margin-right: 0px;"
+        >
+          <svg
+            class="vue-star-rating-star"
+            data-v-21f5376e=""
+            data-v-34cbeed1=""
+            height="20"
+            step="100"
+            viewBox="0 0 20 20"
+            width="20"
+          >
+            <lineargradient
+              data-v-21f5376e=""
+              id="l8y10h"
+              x1="0"
+              x2="100%"
+              y1="0"
+              y2="0"
+            >
+              <stop
+                data-v-21f5376e=""
+                offset="0%"
+                stop-color="#ffd055"
+              />
+               
+              <stop
+                data-v-21f5376e=""
+                offset="0%"
+                stop-color="#d8d8d8"
+              />
+            </lineargradient>
+             
+            <filter
+              data-v-21f5376e=""
+              filterUnits="userSpaceOnUse"
+              height="130%"
+              id="6zssif"
+              width="130%"
+            >
+              <fegaussianblur
+                data-v-21f5376e=""
+                result="coloredBlur"
+                stdDeviation="0"
+              />
+               
+              <femerge
+                data-v-21f5376e=""
+              >
+                <femergenode
+                  data-v-21f5376e=""
+                  in="coloredBlur"
+                />
+                 
+                <femergenode
+                  data-v-21f5376e=""
+                  in="SourceGraphic"
+                />
+              </femerge>
+            </filter>
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#l8y10h)"
+              filter="url(#6zssif)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#fff"
+              style="display: none;"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#l8y10h)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#999"
+              stroke-linejoin="miter"
+              stroke-width="0"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#l8y10h)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+            />
+          </svg>
+        </span>
+        <span
+          class="vue-star-rating-star"
+          data-v-34cbeed1=""
+          style="margin-right: 0px;"
+        >
+          <svg
+            class="vue-star-rating-star"
+            data-v-21f5376e=""
+            data-v-34cbeed1=""
+            height="20"
+            step="100"
+            viewBox="0 0 20 20"
+            width="20"
+          >
+            <lineargradient
+              data-v-21f5376e=""
+              id="ns42a6"
+              x1="0"
+              x2="100%"
+              y1="0"
+              y2="0"
+            >
+              <stop
+                data-v-21f5376e=""
+                offset="0%"
+                stop-color="#ffd055"
+              />
+               
+              <stop
+                data-v-21f5376e=""
+                offset="0%"
+                stop-color="#d8d8d8"
+              />
+            </lineargradient>
+             
+            <filter
+              data-v-21f5376e=""
+              filterUnits="userSpaceOnUse"
+              height="130%"
+              id="noiba"
+              width="130%"
+            >
+              <fegaussianblur
+                data-v-21f5376e=""
+                result="coloredBlur"
+                stdDeviation="0"
+              />
+               
+              <femerge
+                data-v-21f5376e=""
+              >
+                <femergenode
+                  data-v-21f5376e=""
+                  in="coloredBlur"
+                />
+                 
+                <femergenode
+                  data-v-21f5376e=""
+                  in="SourceGraphic"
+                />
+              </femerge>
+            </filter>
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#ns42a6)"
+              filter="url(#noiba)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#fff"
+              style="display: none;"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#ns42a6)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+              stroke="#999"
+              stroke-linejoin="miter"
+              stroke-width="0"
+            />
+             
+            <polygon
+              data-v-21f5376e=""
+              fill="url(#ns42a6)"
+              points="9.090909090909092,1.0101010101010102,3.0303030303030303,20,18.181818181818183,7.878787878787879,0,7.878787878787879,15.15151515151515,20"
+            />
+          </svg>
+        </span>
+         
+        <span
+          class="vue-star-rating-rating-text"
+          data-v-34cbeed1=""
+        >
+           3.00
+        </span>
+      </div>
+    </div>
+     
+    <p
+      class="notes"
+    >
+      avg of 4 ratings
+    </p>
+  </div>
+   
+  <div
+    class="col-sm-8"
+  >
+    <h4
+      class="title"
+    >
+      California
+    </h4>
+     
+    <h5
+      class="authors"
+    >
+      Kevin Starr
+    </h5>
+     
+    <p
+      class="text"
+    >
+      A definitive, single-volume history of the Golden State ranges from the earliest Native American cultures, through the Spanish and Mexican eras, the Gold Rush, and rise of Hollywood, to the twenty-first century, chronicling the events, places, and personalities that have shaped California. Reprint. 15,000 first printing.
+    </p>
+     
+    <div>
+      <!---->
+    </div>
+     
+    <div
+      class="add-item row"
+    >
+      <i
+        class="fas fa-plus-circle"
+      />
+       
+      <p
+        class="add"
+      >
+        add to list
+      </p>
+    </div>
+     
+    <!---->
+     
+    <hr />
+  </div>
+</div>
+`;

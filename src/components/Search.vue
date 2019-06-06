@@ -3,7 +3,7 @@
 
 <template>
   <div id="search">
-    <p id="ask">What do you feel like reading?</p>
+    <p class="subtitle">What do you feel like reading?</p>
 
     <!-- search input -->
     <div id="input-holder">
@@ -14,11 +14,10 @@
         placeholder="book, author, subject, keyword"
         @keyup.enter="fetchSearch"
       >
-      <img id="search-icon" src="../assets/search.png" alt>
+      <img id="search-icon" src="../assets/search.png" alt="search" @click="fetchSearch">
     </div>
 
     <!-- search results -->
-
     <p v-if="this.searchResults.length>0" class="subtitle">search results</p>
 
     <!-- draggable is a nice npm package -->
@@ -29,7 +28,11 @@
       @start="drag=true"
       @end="drag=false"
     >
-      <div v-for="(result, index) in searchResults" :key="index" class="result-item col-6 col-sm-4 col-md-3 col-lg-2">
+      <div
+        v-for="(result, index) in searchResults"
+        :key="index"
+        class="result-item col-6 col-sm-4 col-md-3 col-lg-2"
+      >
         <Thumbnail
           @showBookDetail="showBookDetail"
           v-if="!!result.volumeInfo.imageLinks"
@@ -46,11 +49,14 @@
     <!-- if nothing is there ... -->
     <p v-if="this.readingList.length === 0" class="list-intro">
       {{`Your list is empty! Search for some books from Google, add them to your
-      list, and they will appear here. `}}
+      list, and they will appear here. Once you have a list of books, drag the books
+      to sort them, or make use of the sort buttons. You can remove books you no longer
+      want.`}}
     </p>
 
-    <!--  -->
-    <!-- draggable is a nice npm package -->
+    <!-- the sorter buttons -->
+    <SortButtons v-else @sortReadingList="sortReadingList"/>
+
     <draggable
       class="results row"
       v-model="readingList"
@@ -58,7 +64,11 @@
       @start="drag=true"
       @end="drag=false"
     >
-      <div v-for="(result, index) in readingList" :key="index" class="result-item col-6 col-sm-4 col-md-3 col-lg-2">
+      <div
+        v-for="(result, index) in readingList"
+        :key="index"
+        class="result-item col-6 col-sm-4 col-md-3 col-lg-2"
+      >
         <Thumbnail
           @showBookDetail="showBookDetail"
           v-if="!!result.volumeInfo.imageLinks"
@@ -90,7 +100,7 @@ import draggable from "vuedraggable";
 // components
 import Thumbnail from "./Thumbnail";
 import BookDetail from "./BookDetail";
-
+import SortButtons from "./SortButtons";
 // tools
 import axios from "axios";
 import VueAxios from "vue-axios";
@@ -100,6 +110,7 @@ Vue.use(VueAxios, axios);
 export default {
   name: "",
   components: {
+    SortButtons,
     Thumbnail,
     BookDetail,
     draggable // register the npm component
@@ -186,6 +197,38 @@ export default {
       this.readingList = this.readingList.filter(book => {
         return book.id !== this.detailBook.id;
       });
+    },
+    // must credit stackoverflow for making the sorting really easy
+    // https://stackoverflow.com/questions/8900732/
+    sortReadingList(data) {
+      console.log(`sorting reading list by ${data.sortBy}`);
+
+      if (data.sortBy === "title") {
+        this.readingList = this.readingList.sort(function(a, b) {
+          var textA = a.volumeInfo.title.toUpperCase();
+          var textB = b.volumeInfo.title.toUpperCase();
+          return textA < textB ? -1 : textA > textB ? 1 : 0;
+        });
+      } else if (data.sortBy === "author") {
+        this.readingList = this.readingList.sort(function(a, b) {
+          // we'll use the last name if its there, should always be but not sure?
+          var textA = a.volumeInfo.authors[0].toUpperCase();
+          var nameA = textA.slice(textA.indexOf(" ") + 1) || textA;
+
+          var textB = b.volumeInfo.authors[0].toUpperCase();
+          var nameB = textB.slice(textB.indexOf(" ") + 1) || textB;
+
+          return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
+        });
+      } else if (data.sortBy === "date") {
+        this.readingList = this.readingList.sort(function(a, b) {
+
+          var dateA = Number(a.volumeInfo.publishedDate.slice(0,4))
+          var dateB = Number(b.volumeInfo.publishedDate.slice(0,4))
+
+          return parseFloat(dateA) - parseFloat(dateB);
+        });
+      }
     }
   }
 };
@@ -229,7 +272,7 @@ $link-blue: rgb(0, 119, 255);
 }
 .list-intro {
   font-size: 18px;
-  width: 60%;
+  width: 80%;
   text-align: left;
 }
 .subtitle {
@@ -240,6 +283,10 @@ $link-blue: rgb(0, 119, 255);
   margin: 8px;
   height: 24px;
   width: 30px;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: rotate(60deg);
+  }
 }
 // i {
 //   font-size: 24px;
