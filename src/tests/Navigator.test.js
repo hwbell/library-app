@@ -4,6 +4,9 @@ import { shallowMount, mount } from '@vue/test-utils'
 import Vue from 'vue'
 import Navigator from '../components/Navigator.vue';
 
+import vueSmoothScroll from "vue2-smooth-scroll";
+Vue.use(vueSmoothScroll);
+
 describe('Navigator', () => {
 
   it('renders correctly', () => {

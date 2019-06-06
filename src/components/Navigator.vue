@@ -2,6 +2,7 @@
   <div id="navigator">
     <p class="app-name">Your Library</p>
 
+    <!-- media query for either a dropdown or text headers. -->
     <MqShow if="sm">
       <b-dropdown id="dropdown" text="Go to" variant="primary" class="m-md-2 dropdown">
         <b-dropdown-item>
@@ -27,18 +28,16 @@
 </template>
 
 <script>
-// npm package for media queries
 import Vue from "vue";
-import vueSmoothScroll from "vue2-smooth-scroll";
-var VueScrollTo = require('vue-scrollto');
 
+// npm package for smooth scrolling with links
+import vueSmoothScroll from "vue2-smooth-scroll";
 Vue.use(vueSmoothScroll);
-Vue.use(VueScrollTo, {offset: 50})
 
 export default {
   name: "navigator",
   components: {
-    //
+    // MqShow
   },
   props: {
     //

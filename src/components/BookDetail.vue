@@ -1,5 +1,5 @@
 <template>
-  <div class="book-detail row">
+  <div v-click-outside="closeDetail" class="book-detail row">
     <!-- <p class="text">{{ this.book.volumeInfo.title}}</p> -->
     <!-- <i class="fas fa-times float-right" @click="closeDetail" @blur="closeDetail"></i> -->
 
@@ -14,6 +14,7 @@
 
       <star-rating
         class="stars"
+        :glow="5"
         :star-size="20"
         :fixed-points="2"
         :read-only="true"
@@ -28,17 +29,17 @@
     if its NOT a search, we can only delete it - its already on the list-->
     <div class="col-sm-8" >
       <h4 class="title">{{ info.title}}</h4>
-      <h5 class="authors">{{ info.authors.join(', ')}}</h5>
+      <h5 class="authors">{{ info.authors.slice(0,2).join(', ')}}</h5>
 
-      <p class="text">{{info.description.slice(0,350)}}</p>
+      <p class="text">{{info.description.slice(0,350) + '...'}}</p>
 
       <!-- popup -->
       <div>
         <transition name="fade">
           <div v-if="this.showPopup" class="popup">
             <i class="fas fa-check"></i>
-            <p v-if="type == 'search'" class="alert">book added!</p>
-            <p v-if="type !== 'search'" class="alert">book removed</p>
+            <p v-if="type == 'search'" class="text">book added!</p>
+            <p v-if="type !== 'search'" class="text">book removed</p>
           </div>
         </transition>
       </div>
@@ -63,6 +64,7 @@
 // use this npm package for the stars, very handy
 import StarRating from "vue-star-rating";
 import { setTimeout } from "timers";
+import vClickOutside from 'v-click-outside'
 
 export default {
   name: "book-detail",
@@ -83,10 +85,11 @@ export default {
     return {
       info: this.book.volumeInfo,
       showPopup: false,
-      type: this.type
+      // type: this.type
     };
   },
   directives: {
+    clickOutside: vClickOutside.directive,
     focus: {
       inserted: function(el) {
         el.focus();
@@ -137,19 +140,23 @@ $link-blue: rgb(0, 119, 255);
 
 .book-detail {
   position: fixed;
-  height: 70%;
+  height: 400px;
   width: 70%;
   min-width: 300px;
   max-width: 500px;
-  bottom: 10%;
-  right: 10%;
-  background-color: rgba(245, 245, 245, 0.98);
+  bottom: 30px;
+  right: 50px;
+  background-color: rgba(245, 245, 245, 0.9);
   box-shadow: 0px 0px 5px 2px rgba(5, 1, 71, 0.52);
   border-radius: 10px;
   overflow-y: scroll;
 }
 .popup {
-  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
   background-color: rgba(245, 245, 245, 0.98);
   box-shadow: 0px 0px 5px 2px rgba(5, 1, 71, 0.52);
   border-radius: 10px;
@@ -183,6 +190,7 @@ $link-blue: rgb(0, 119, 255);
 .text {
   text-align: left;
   font-size: 14px;
+  padding: 10px;
   // color: black;
 }
 .add-item {
@@ -215,6 +223,9 @@ i {
   &:hover {
     color: grey;
   }
+}
+.fa-check {
+  padding: 6px;
 }
 .alert {
   font-size: 12px;

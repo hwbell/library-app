@@ -35,7 +35,7 @@ exports[`v renders correctly 1`] = `
       borderwidth="0"
       class="stars"
       fixedpoints="2"
-      glow="0"
+      glow="5"
       glowcolor="#fff"
       inactivecolor="#d8d8d8"
       increment="1"
@@ -75,7 +75,7 @@ exports[`v renders correctly 1`] = `
     <p
       class="text"
     >
-      A definitive, single-volume history of the Golden State ranges from the earliest Native American cultures, through the Spanish and Mexican eras, the Gold Rush, and rise of Hollywood, to the twenty-first century, chronicling the events, places, and personalities that have shaped California. Reprint. 15,000 first printing.
+      A definitive, single-volume history of the Golden State ranges from the earliest Native American cultures, through the Spanish and Mexican eras, the Gold Rush, and rise of Hollywood, to the twenty-first century, chronicling the events, places, and personalities that have shaped California. Reprint. 15,000 first printing....
     </p>
      
     <div>

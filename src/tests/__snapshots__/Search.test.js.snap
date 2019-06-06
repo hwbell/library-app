@@ -12,6 +12,7 @@ exports[`Search renders correctly 1`] = `
    
   <div
     id="input-holder"
+    name="rotate"
   >
     <input
       id="search-input"

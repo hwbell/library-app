@@ -1,26 +1,32 @@
 
-<!-- Search is the master component for everything deriving from the user search -->
+<!-- Search is the master component for everything deriving from the user search. It seems
+easier to have the reading list live within this component, rather than passing list data 
+back and forth to a parent of Search and List. I'm new to Vue at the time of writing so perhaps
+this could be structured more efficiently. -->
 
 <template>
   <div id="search">
     <p class="subtitle">What do you feel like reading?</p>
 
     <!-- search input -->
-    <div id="input-holder">
-      <input
-        type="text"
-        id="search-input"
-        v-model="query"
-        placeholder="book, author, subject, keyword"
-        @keyup.enter="fetchSearch"
-      >
-      <img id="search-icon" src="../assets/search.png" alt="search" @click="fetchSearch">
-    </div>
+    <transition name="rotate">
+      <div v-if="!this.loading" id="input-holder">
+        <input
+          type="text"
+          id="search-input"
+          v-model="query"
+          placeholder="book, author, subject, keyword"
+          @keyup.enter="fetchSearch"
+        >
+        <img id="search-icon" src="../assets/search.png" alt="search" @click="fetchSearch">
+      </div>
+    </transition>
 
-    <!-- search results -->
+    <!-- the search results -->
     <p v-if="this.searchResults.length>0" class="subtitle">search results</p>
 
     <!-- draggable is a nice npm package -->
+    <!-- the list -->
     <draggable
       class="results"
       v-model="searchResults"
@@ -46,7 +52,6 @@
     </draggable>
 
     <!-- reading list -->
-
     <p id="reading-list" class="subtitle">Your Reading List</p>
 
     <!-- if nothing is there ... -->
@@ -59,7 +64,7 @@
 
     <!-- the sorter buttons -->
     <SortButtons v-else @sortReadingList="sortReadingList"/>
-
+    <!-- the list -->
     <draggable
       class="results"
       v-model="readingList"
@@ -107,6 +112,7 @@ import draggable from "vuedraggable";
 import Thumbnail from "./Thumbnail";
 import BookDetail from "./BookDetail";
 import SortButtons from "./SortButtons";
+
 // tools
 import axios from "axios";
 import VueAxios from "vue-axios";
@@ -119,12 +125,13 @@ export default {
     SortButtons,
     Thumbnail,
     BookDetail,
-    draggable // register the npm component
+    draggable, // register the npm components
   },
   data() {
     return {
       query: "",
       searchResults: [],
+      loading: false,
       readingList: [],
       showDetail: false,
       showPopup: false,
@@ -142,6 +149,7 @@ export default {
   },
   methods: {
     fetchSearch() {
+      this.loading = true;
       // console.log(`fetching data for query: ${this.query}`);
       Vue.axios
         .get(
@@ -153,6 +161,7 @@ export default {
           // console.log(response);
           this.searchResults = response.data.items;
           this.searchFired = true;
+          this.loading = false;
         })
         .catch(e => {
           console.log(e);
@@ -261,6 +270,7 @@ $link-blue: rgb(0, 119, 255);
   display: flex;
   justify-content: center;
   margin: 20px;
+  min-height: 80px;
 }
 #ask {
   font-size: 24px;
@@ -308,11 +318,21 @@ $link-blue: rgb(0, 119, 255);
 // for the animation of the modal
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.rotate-enter-active,
+.rotate-leave-active {
+  transition: all 1.5s;
+}
+.rotate-enter,
+.rotate-leave-to {
+  opacity: 0;
+  color: white;
+  transform: rotateY(180deg);
 }
 .ghost {
   opacity: 0.5;
