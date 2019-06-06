@@ -149,6 +149,9 @@ export default {
   },
   methods: {
     fetchSearch() {
+      if (this.query.length < 1) {
+        return;
+      }
       this.loading = true;
       // console.log(`fetching data for query: ${this.query}`);
       Vue.axios
