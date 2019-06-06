@@ -3,6 +3,8 @@
 
 ## Project setup
 ```
+git clone https://github.com/hwbell/library-app.git
+cd library-app 
 npm install
 ```
 
