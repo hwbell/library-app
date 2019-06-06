@@ -22,24 +22,27 @@
 
     <!-- draggable is a nice npm package -->
     <draggable
-      class="results row"
+      class="results"
       v-model="searchResults"
       group="search"
+      ghost-class="ghost"
       @start="drag=true"
       @end="drag=false"
     >
-      <div
-        v-for="(result, index) in searchResults"
-        :key="index"
-        class="result-item col-6 col-sm-4 col-md-3 col-lg-2"
-      >
-        <Thumbnail
-          @showBookDetail="showBookDetail"
-          v-if="!!result.volumeInfo.imageLinks"
-          :source="result"
-          type="search"
-        />
-      </div>
+      <transition-group class="row" name="fade" tag="div">
+        <div
+          v-for="(result, index) in searchResults"
+          :key="index"
+          class="result-item col-6 col-sm-4 col-md-3 col-lg-2"
+        >
+          <Thumbnail
+            @showBookDetail="showBookDetail"
+            v-if="!!result.volumeInfo.imageLinks"
+            :source="result"
+            type="search"
+          />
+        </div>
+      </transition-group>
     </draggable>
 
     <!-- reading list -->
@@ -58,24 +61,27 @@
     <SortButtons v-else @sortReadingList="sortReadingList"/>
 
     <draggable
-      class="results row"
+      class="results"
       v-model="readingList"
       group="reading"
+      ghost-class="ghost"
       @start="drag=true"
       @end="drag=false"
     >
-      <div
-        v-for="(result, index) in readingList"
-        :key="index"
-        class="result-item col-6 col-sm-4 col-md-3 col-lg-2"
-      >
-        <Thumbnail
-          @showBookDetail="showBookDetail"
-          v-if="!!result.volumeInfo.imageLinks"
-          :source="result"
-          type="reading-list"
-        />
-      </div>
+      <transition-group class="row" name="fade" tag="div">
+        <div
+          v-for="(result, index) in readingList"
+          :key="index"
+          class="result-item col-6 col-sm-4 col-md-3 col-lg-2"
+        >
+          <Thumbnail
+            @showBookDetail="showBookDetail"
+            v-if="!!result.volumeInfo.imageLinks"
+            :source="result"
+            type="reading-list"
+          />
+        </div>
+      </transition-group>
     </draggable>
 
     <!-- the detail page. this will show when a thumbnail is clicked -->
@@ -222,11 +228,10 @@ export default {
         });
       } else if (data.sortBy === "date") {
         this.readingList = this.readingList.sort(function(a, b) {
+          var dateA = Number(a.volumeInfo.publishedDate.slice(0, 4));
+          var dateB = Number(b.volumeInfo.publishedDate.slice(0, 4));
 
-          var dateA = Number(a.volumeInfo.publishedDate.slice(0,4))
-          var dateB = Number(b.volumeInfo.publishedDate.slice(0,4))
-
-          return parseFloat(dateA) - parseFloat(dateB);
+          return parseFloat(dateB) - parseFloat(dateA);
         });
       }
     }
@@ -266,8 +271,10 @@ $link-blue: rgb(0, 119, 255);
   height: 25px;
   border: 1px solid lightgrey;
   border-radius: 20px;
-  &:focus {
+  &:focus,
+  &:active:focus {
     outline: none;
+    background-color: whitesmoke;
   }
 }
 .list-intro {
@@ -306,5 +313,10 @@ $link-blue: rgb(0, 119, 255);
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.ghost {
+  opacity: 0.5;
+  background: #e7e9ff;
+  border-radius: 10px;
 }
 </style>

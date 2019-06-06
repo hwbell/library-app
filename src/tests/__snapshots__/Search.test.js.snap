@@ -29,8 +29,14 @@ exports[`Search renders correctly 1`] = `
   <!---->
    
   <div
-    class="results row"
-  />
+    class="results"
+  >
+    <span
+      class="row"
+      name="fade"
+      tag="div"
+    />
+  </div>
    
   <p
     class="subtitle"
@@ -51,8 +57,14 @@ exports[`Search renders correctly 1`] = `
   </p>
    
   <div
-    class="results row"
-  />
+    class="results"
+  >
+    <span
+      class="row"
+      name="fade"
+      tag="div"
+    />
+  </div>
    
   <!---->
 </div>

@@ -5,7 +5,7 @@
 
     <i class="fas fa-times" @click="closeDetail"></i>
 
-    <!-- image with info below -->
+    <!-- image with info below - pages, rating, etc-->
     <div class="image-holder col-sm-4">
       <img class="image" :src="info.imageLinks.thumbnail" alt>
 
@@ -26,7 +26,7 @@
     whether or not you see an add or delete option depends on
     the 'type' prop. if its a search detail, we can add the book.
     if its NOT a search, we can only delete it - its already on the list-->
-    <div class="col-sm-8">
+    <div class="col-sm-8" >
       <h4 class="title">{{ info.title}}</h4>
       <h5 class="authors">{{ info.authors.join(', ')}}</h5>
 
@@ -82,7 +82,8 @@ export default {
   data() {
     return {
       info: this.book.volumeInfo,
-      showPopup: false
+      showPopup: false,
+      type: this.type
     };
   },
   directives: {
@@ -136,11 +137,12 @@ $link-blue: rgb(0, 119, 255);
 
 .book-detail {
   position: fixed;
-  height: 60%;
+  height: 70%;
   width: 70%;
+  min-width: 300px;
   max-width: 500px;
-  bottom: 0%;
-  right: 15%;
+  bottom: 10%;
+  right: 10%;
   background-color: rgba(245, 245, 245, 0.98);
   box-shadow: 0px 0px 5px 2px rgba(5, 1, 71, 0.52);
   border-radius: 10px;

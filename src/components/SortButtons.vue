@@ -3,9 +3,9 @@
   <div id="sort-buttons">
     <p class="text">sort by: </p>
 
-    <b-button class="sort" @click="sortReadingList('title')" >Title</b-button>
-    <b-button class="sort" @click="sortReadingList('author')" >Author</b-button>
-    <b-button class="sort" @click="sortReadingList('date')" >Newest</b-button>
+    <b-button class="sort title-button" @click="sortReadingList('title')" >Title</b-button>
+    <b-button class="sort author-button" @click="sortReadingList('author')" >Author</b-button>
+    <b-button class="sort date-button" @click="sortReadingList('date')" >Newer</b-button>
 
   </div>
 

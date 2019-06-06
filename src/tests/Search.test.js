@@ -20,16 +20,22 @@ describe('Search', () => {
   it('contains search selector', () => {
     expect(wrapper.html()).toContain('id="search"')
   })
-  it('contains results-row selector', () => {
-    expect(wrapper.html()).toContain('class="results row"')
-  })
 
   it('contains list-intro selector, meaning results are empty', () => {
     expect(wrapper.html()).toContain('class="list-intro"')
   })
 
-  it('initially contains no search results', () => {
-    expect(wrapper.html()).not.toContain('class="result-item"')
+  it('initially only contains search results after input trigger', () => {
+    expect(wrapper.html()).not.toContain('result-item')
+
+    // then fire and check if it is there
+    wrapper.find("input").setValue("history")
+    wrapper.find("input").trigger('click')
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.html()).toContain('result-item')
+      done()
+    })
+
   })
 
   // functions
@@ -41,7 +47,11 @@ describe('Search', () => {
     // then fire and check if it is NOT empty
     wrapper.find("input").setValue("history")
     wrapper.find("input").trigger
-    expect(wrapper.vm.searchResults).not.toBe(0)
+    
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.vm.searchResults.length).not.toBe(0)
+      done()
+    })
 
   })
 

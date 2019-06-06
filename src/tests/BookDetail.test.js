@@ -91,7 +91,7 @@ describe('v', () => {
   }
 
   it('renders correctly', () => {
-    const wrapper = mount(BookDetail,someProps)
+    const wrapper = shallowMount(BookDetail,someProps)
 
     expect(wrapper.element).toMatchSnapshot()
   })
@@ -100,12 +100,51 @@ describe('v', () => {
   it('is a Vue instance', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
-  // it('contains navigator selector', () => {
-  //   expect(wrapper.html()).toContain('id="navigator"')
-  // })
-  // it('contains links-holder selector', () => {
-  //   expect(wrapper.html()).toContain('class="links-holder"')
-  // })
+
+  it('contains book-detail selector', () => {
+    expect(wrapper.html()).toContain('class="book-detail row"')
+  })
+
+  it('contains image-holder selector', () => {
+    expect(wrapper.html()).toContain('class="image-holder col-sm-4"')
+  })
+
+  // check for popup activity
+  it('should show the popup only when showPopup == true', () => {
+    
+    // should be false at the start
+    expect(wrapper.vm.showPopup).toBe(false)
+    expect(wrapper.html()).not.toContain('class="popup"')
+
+    wrapper.setData({ showPopup: true })
+    expect(wrapper.html()).toContain('class="popup"')
+  })
+
+  // check for the right button
+  it('should contain the correct button', () => {
+    let searchProps = {
+      propsData: {
+        book: mockData,
+        type: 'search'
+      }
+    }
+    let listProps = {
+      propsData: {
+        book: mockData,
+        type: 'list'
+      }
+    }
+    // make separate wrappers since this is a prop based assertion
+    let searchWrapper = shallowMount(BookDetail, searchProps)
+    let listWrapper = shallowMount(BookDetail, listProps)
+
+    // should have the add button when type==search, remove button when type!==search
+    expect(searchWrapper.html()).toContain('class="fas fa-plus-circle"')
+
+    expect(listWrapper.html()).toContain('class="fas fa-times-circle"')
+
+
+  })
   
 
 })

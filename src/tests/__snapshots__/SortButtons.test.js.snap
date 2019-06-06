@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortButtons renders correctly 1`] = `
+<div
+  id="sort-buttons"
+>
+  <p
+    class="text"
+  >
+    sort by: 
+  </p>
+   
+  <b-button
+    class="sort title-button"
+  >
+    Title
+  </b-button>
+   
+  <b-button
+    class="sort author-button"
+  >
+    Author
+  </b-button>
+   
+  <b-button
+    class="sort date-button"
+  >
+    Newer
+  </b-button>
+</div>
+`;
