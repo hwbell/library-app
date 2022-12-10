@@ -16,7 +16,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.22",
     "core-js": "^2.6.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "fine-mq": "^1.1.0",
     "node-sass": "^4.12.0",
     "v-click-outside": "^2.1.3",
